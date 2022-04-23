@@ -1,8 +1,18 @@
-.env exemple
 
+# comment configurer la template.
+
+crée et remplisez un fichier **.env** dans le dossier config puis executé les commande ci-dessous
+
+```shell
+ $ npm install
+ 
+ $ npm run dev
+```
+
+exemple du .env
 ```dotenv
-TOKEN=xx
+TOKEN=xxx
 OWNERID=xxx
 GUILD_ID=xxx
-BOTID=xx
+BOTID=xxx
 ```
