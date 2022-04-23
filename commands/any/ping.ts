@@ -1,0 +1,16 @@
+import {Constants} from "discord.js";
+
+module.exports ={
+    config : {
+        jsonCommand: {
+            name: "ping",
+            description: "teste le temps de réponses avec discord",
+        },
+        enable: true
+    },
+    execute: async ( client: any, interaction: any ) => {
+
+        interaction.reply({ content: "jure ça marche ?"})
+
+    }
+}
