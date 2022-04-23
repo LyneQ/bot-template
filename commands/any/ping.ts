@@ -8,7 +8,7 @@ module.exports ={
         },
         enable: true
     },
-    execute: async ( client: any, interaction: any ) => {
+    execute: async ( client: any, interaction: any, error: any ) => {
 
         interaction.reply({ content: "jure ça marche ?"})
 

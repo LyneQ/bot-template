@@ -7,7 +7,7 @@ module.exports ={
             name: "say",
             description: "fait dire au bot ce que vous voulez qu'il disent ",
             options: [{
-                name: 'channel',
+                name: "textchannel",
                 description: "le channel ou sera envoyé les données",
                 required: true,
                 type: Constants.ApplicationCommandOptionTypes.CHANNEL
@@ -20,18 +20,24 @@ module.exports ={
         },
         enable: true
     },
-    execute: async ( client: any, interaction: any ) => {
+    execute: async ( client: any, interaction: any, error: any ) => {
 
-        /**
-         * init all commands options
-         */
-        const channel   = interaction.options.getChannel("channel") || "null"
-        const inputText = interaction.options.getString("text") || "null"
+        // init all commands options
+        const channel   = interaction.options.get("textchannel")
+        const inputText = interaction.options.get("text").value
 
-        console.log(channel.value)
-        console.log(inputText)
+        //commands execution
 
-        interaction.reply({ content: "reçu !" })
+        const finalChannel: any = interaction.guild.channels.cache.get( channel.value )
+
+        if ( !channel ) return interaction.reply({ content: error.channel.typeTextRequire, ephemeral: true })
+        if ( finalChannel.type !== "GUILD_TEXT" ) return interaction.reply({ content: error.channel.typeTextRequire, ephemeral: true})
+
+
+        finalChannel.send({
+            content: inputText,
+            ephemeral: false
+        })
 
     }
 }

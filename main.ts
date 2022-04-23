@@ -23,7 +23,6 @@ const client = new Client({
     }
 });
 
-client.events = {};
 client.config = process.env
 
 // response to all event
@@ -36,7 +35,6 @@ readdirSync(`${__dirname}/events/`)
         if ( !event.config.enable ) return;
 
 
-        client.events[eventName] = event;
         client.on(eventName, () => {
             event.execute( client )
         } )
@@ -45,11 +43,11 @@ readdirSync(`${__dirname}/events/`)
 // get all commands
 
 const SlashCommands: any[] = [];
+const errorMessage: any = require("./config/error");
 
 readdirSync(`${__dirname}/commands/any/`)
     .filter( (file: any)=> file.endsWith(".ts") )
     .forEach( ( fileName: any )=>{
-        console.log("hello from readDirSync")
 
         const command = require(`${__dirname}/commands/any/${fileName}`);
 
@@ -60,7 +58,7 @@ readdirSync(`${__dirname}/commands/any/`)
 
         client.on('interactionCreate', (interaction: any) =>{
             if ( interaction.commandName == command.config.jsonCommand.name ){
-                command.execute(client, interaction)
+                command.execute(client, interaction, errorMessage)
             }
         } )
 
@@ -78,6 +76,7 @@ const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
         console.log('Started refreshing application (/) commands.');
 
         if ( SlashCommands.length === 0 ) return console.log("invalid slash commands found");
+
 
         await rest.put(
             Routes.applicationGuildCommands( process.env.BOTID , process.env.GUILD_ID),
