@@ -1,7 +1,7 @@
 
 # comment configurer la template.
 
-crée et remplisez un fichier **.env** dans le dossier config puis executé les commande ci-dessous
+crée et remplisez un fichier **.env** dans le dossier config puis executé les commandes ci-dessous
 
 ```shell
  $ npm install
