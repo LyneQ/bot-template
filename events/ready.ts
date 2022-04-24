@@ -4,8 +4,12 @@ module.exports ={
         enable: true
     },
     execute: ( client: any ) => {
+        const colors = require('colors');
 
-        console.log(`connected as ${client.user.username} `)
+
+        client.db.setup()
+
+        console.log(colors.green(`[app] connected as ${colors.yellow(client.user.username)} `))
 
     }
 }

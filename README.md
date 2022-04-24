@@ -15,4 +15,8 @@ TOKEN=xxx
 OWNERID=xxx
 GUILD_ID=xxx
 BOTID=xxx
+DB_USERNAME=my_username
+DB_PASSWORD=my_db_password
+DB_NAME=DataBase_name
+DB_IP=0.0.0.0:2017
 ```

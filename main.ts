@@ -1,6 +1,8 @@
 /**
  * all npm modules require
  */
+const mongoose = require("mongoose");
+const colors = require('colors');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const path = require("path");
@@ -23,6 +25,13 @@ const client = new Client({
     }
 });
 
+/**
+ * client options
+ */
+client.db = {
+    setup: require("./config/DB/setup"),
+    models: require("./config/DB/getModels")
+};
 client.config = process.env
 
 // response to all event
@@ -73,7 +82,6 @@ const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
 
 (async () => {
     try {
-        console.log('Started refreshing application (/) commands.');
 
         if ( SlashCommands.length === 0 ) return console.log("invalid slash commands found");
 
@@ -84,7 +92,7 @@ const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
         );
 
 
-        console.log('Successfully reloaded application (/) commands.');
+        console.log(colors.green('[app] slash commands reloaded.'));
     } catch (error) {
         console.error(error);
     }
