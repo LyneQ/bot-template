@@ -39,5 +39,6 @@ module.exports ={
             ephemeral: false
         })
 
+        interaction.reply({ content: "le message: **`"+ inputText +"`** à été envoyé avec succés dans le salon: <#"+ finalChannel +"> !" })
     }
 }

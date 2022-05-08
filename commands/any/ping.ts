@@ -10,7 +10,7 @@ module.exports ={
     },
     execute: async ( client: any, interaction: any, error: any ) => {
 
-        interaction.reply({ content: "jure ça marche ?"})
+        interaction.reply({ content: " Pong ! "})
 
     }
 }

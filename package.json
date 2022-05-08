@@ -4,7 +4,7 @@
   "description": "template for a discord bot in djV13",
   "main": "main.ts",
   "scripts": {
-    "dev": "npx ts-node ./main.ts"
+    "dev": " cls & npx ts-node ./main.ts"
   },
   "author": "LyneQ",
   "license": "ISC",

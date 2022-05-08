@@ -24,6 +24,7 @@ const client = new Client({
         }]
     }
 });
+const SlashCommands: any[] = [];
 
 /**
  * client options
@@ -32,6 +33,9 @@ client.db = {
     setup: require("./config/DB/setup"),
     models: require("./config/DB/getModels")
 };
+client.commands = {
+    all: SlashCommands
+}
 client.config = process.env
 
 // response to all event
@@ -51,7 +55,6 @@ readdirSync(`${__dirname}/events/`)
 
 // get all commands
 
-const SlashCommands: any[] = [];
 const errorMessage: any = require("./config/error");
 
 readdirSync(`${__dirname}/commands/any/`)
@@ -67,7 +70,7 @@ readdirSync(`${__dirname}/commands/any/`)
 
         client.on('interactionCreate', (interaction: any) =>{
             if ( interaction.commandName == command.config.jsonCommand.name ){
-                command.execute(client, interaction, errorMessage)
+                    command.execute(client, interaction, errorMessage)
             }
         } )
 
@@ -83,7 +86,7 @@ const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
 (async () => {
     try {
 
-        if ( SlashCommands.length === 0 ) return console.log("invalid slash commands found");
+        if ( SlashCommands.length === 0 ) return console.log(colors.red("[app] invalid slash commands found: \"invalid JSON\""));
 
 
         await rest.put(
