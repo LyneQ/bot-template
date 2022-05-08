@@ -25,13 +25,10 @@ module.exports ={
         let embed = new MessageEmbed()
             .setTitle("help embed")
             .setTimestamp()
-            .setColor("#333")
+            .setColor("#CA994A")
 
         function getEmbed(command_name:string ){
-            console.log(command_name)
             const command = client.commands.all.filter( (cmd :any) => cmd.name === command_name )
-
-            console.log( command[0] )
 
             embed.setDescription( `**/${command[0].name}** => ${command[0].description}` )
             embed.addField('\u200B', '\u200B')
@@ -44,19 +41,36 @@ module.exports ={
 
                 })
             }
+        }
+
+        function getBasicEmbed(){
+
+            const command = client.commands.all
+
+            embed.setDescription( `voici toutes nos commandes` )
+            embed.addField('\u200B', '\u200B')
+
+            for (let i = 0; i < command.length; i++) {
+
+                embed.addField( command[i].name, command[i].description, true )
+
+
+
+            }
+
 
 
         }
 
 
         if ( inputText == undefined ) {
-            console.log("no commands found ! :'( ")
 
-            return interaction.reply({ content: error.arguments.invalidArguments, ephemeral: true })
+            getBasicEmbed()
+
+            return interaction.reply({ embeds: [embed], ephemeral: true })
 
 
         } else {
-            console.log("commands found ! ")
 
             getEmbed( inputText.value )
 
