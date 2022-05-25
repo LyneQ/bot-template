@@ -1,16 +1,17 @@
-import {Constants} from "discord.js";
-
 module.exports ={
     config : {
         jsonCommand: {
-            name: "ping",
-            description: "teste le temps de réponses avec discord",
+            name: "date",
+            description: "je vous donne la date d'aujourd'hui",
         },
         enable: true
     },
     execute: async ( client: any, interaction: any, error: any ) => {
 
-        interaction.reply({ content: " Pong ! "})
+        const time = require("../../modules/date/date-main")
+
+
+        interaction.reply({ content: `nous sommes le ${ time() } ` })
 
     }
 }
