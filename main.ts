@@ -10,6 +10,10 @@ const { readdirSync, readFileSync } = require("fs");
 const { Client, Intents, Collection } = require("discord.js");
 require('dotenv').config({ path: path.resolve( `${__dirname}/config/.env` ) });
 /**
+ *  all internal options
+ */
+const errorMessage: any = require("./config/error");
+/**
  * init discord client
  */
 const client = new Client({
@@ -34,7 +38,11 @@ client.db = {
     models: require("./config/DB/getModels")
 };
 client.commands = {
+    count : 0,
     all: SlashCommands
+}
+client.modules = {
+    count : 0
 }
 client.config = process.env
 
@@ -54,9 +62,6 @@ readdirSync(`${__dirname}/events/`)
     });
 
 // get all commands
-
-const errorMessage: any = require("./config/error");
-
 readdirSync(`${__dirname}/commands/any/`)
     .filter( (file: any)=> file.endsWith(".ts") )
     .forEach( ( fileName: any )=>{
@@ -67,6 +72,7 @@ readdirSync(`${__dirname}/commands/any/`)
 
 
         SlashCommands.push( Json )
+        client.commands.count++
 
         client.on('interactionCreate', (interaction: any) =>{
             if ( interaction.commandName == command.config.jsonCommand.name ){
@@ -75,6 +81,17 @@ readdirSync(`${__dirname}/commands/any/`)
         } )
 
     });
+
+// lod modules from directory
+readdirSync(`${__dirname}/modules/`)
+    .filter( (file: any)=> file.endsWith(".ts") )
+    .forEach( ( fileName: any )=>{
+
+        client.modules[fileName.replace('.ts', '')] = { exec : require(`${__dirname}/modules/${fileName}`) }
+        client.modules.count++
+
+    });
+
 
 // send slash commands to discord API
 

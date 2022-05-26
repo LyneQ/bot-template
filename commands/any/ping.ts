@@ -8,10 +8,9 @@ module.exports ={
     },
     execute: async ( client: any, interaction: any, error: any ) => {
 
-        const time = require("../../modules/date/date-main")
+        console.log( client.modules )
 
-
-        interaction.reply({ content: `nous sommes le ${ time() } ` })
+        interaction.reply({ content: `nous sommes le ${ client.modules.date.exec() } ` })
 
     }
 }
