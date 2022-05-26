@@ -7,10 +7,10 @@ module.exports = () => {
 
     mongoose.connect(mongoLink)
         .then( (db: any) =>{
-            console.log( colors.green(`[APP] connected to database ${colors.yellow(db.connections[0].name)}`) )
+            console.log( colors.green(`[DB] connected to database ${colors.yellow(db.connections[0].name)}`) )
         })
         .catch( (err: any) =>{
-            console.log( colors.red(`[APP] an internal error has occurred: "${err.message}"`) )
+            console.log( colors.red(`[DB] an internal error has occurred: "${err.message}"`) )
         } )
 
 }
