@@ -2,7 +2,7 @@ module.exports = () => {
     const mongoose = require("mongoose");
     const colors = require('colors');
 
-    const mongoLink = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_IP}/${process.env.DB_NAME}?authSource=admin&directConnection=true&ssl=false`
+    const mongoLink = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_IP}/${process.env.DB_NAME}`
 
 
     mongoose.connect(mongoLink)
