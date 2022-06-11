@@ -93,32 +93,6 @@ readdirSync(`${__dirname}/modules/`)
     });
 
 
-// send slash commands to discord API
-
-
-
-const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
-
-
-(async () => {
-    try {
-
-        if ( SlashCommands.length === 0 ) return console.log(colors.red("[app] invalid slash commands found: \"invalid JSON\""));
-
-
-        await rest.put(
-            Routes.applicationGuildCommands( process.env.BOTID , process.env.GUILD_ID),
-            { body: SlashCommands },
-        );
-
-
-        console.log(colors.green('[app] slash commands reloaded.'));
-    } catch (error) {
-        console.error(error);
-    }
-})();
-
-
 client.login(process.env.TOKEN);
 
 
