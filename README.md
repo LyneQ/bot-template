@@ -23,10 +23,13 @@ DB_IP=0.0.0.0:2017
 
 # paramètre d'envoie des commandes
 
-si la deuxième option est mise sur __true__ les commandes sera mise à jour instantanément \n
-```client.modules.sendSlahCommand.exec( process.env.TOKEN, true, client.commands.all, process.env.BOTID, process.env.GUILD_ID )```\n
-si la deuxième option est mise sur __false__ les commandes seront mises à jour avec un gros délai \n
-```client.modules.sendSlahCommand.exec( process.env.TOKEN, false, client.commands.all, process.env.BOTID, process.env.GUILD_ID )```\n
-\n
+si la deuxième option est mise sur __true__ les commandes sera mise à jour instantanément
+
+```client.modules.sendSlahCommand.exec( process.env.TOKEN, true, client.commands.all, process.env.BOTID, process.env.GUILD_ID )```
+
+si la deuxième option est mise sur __false__ les commandes seront mises à jour avec un gros délai 
+
+```client.modules.sendSlahCommand.exec( process.env.TOKEN, false, client.commands.all, process.env.BOTID, process.env.GUILD_ID )```
+
 donc mettez là sur __true__ pour la version en développement et sur false pour la version officielle
 
