@@ -1,3 +1,6 @@
+# Qui ? Pourquoi ?
+
+Cette template a été crée pour produire un bot discord en utilisant [discordJS V13](https://discord.js.org/#/docs/discord.js/main/general/welcome) et en prenant en charge les [slash commands](https://discord.com/blog/slash-commands-are-here)
 
 # comment configurer la template.
 
